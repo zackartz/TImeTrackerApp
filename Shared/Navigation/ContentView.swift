@@ -6,12 +6,11 @@
 //
 
 import SwiftUI
-import BBRefreshableScrollView
 
 struct ContentView: View {
     @State var isPresentingAddModal = false
-    @State var timestamps: [Timestamp] = [];
     @State var currentTime: Date = Date.init()
+    @State var timestamps: [Timestamp] = [];
     
     var body: some View {
         NavigationView() {
@@ -34,7 +33,9 @@ struct ContentView: View {
                             .font(.title2)
                     }
                 })
-                .sheet(isPresented: $isPresentingAddModal, content: {
+                .sheet(isPresented: $isPresentingAddModal, onDismiss: {
+                    loadData()
+                }, content: {
                     AddModal(isPresented: $isPresentingAddModal)
                 })
         }
@@ -42,8 +43,8 @@ struct ContentView: View {
     }
     
     func loadData() {
-        Api().getTimestamps { timestamps in
-            self.timestamps = timestamps
+        Api().getTimestamps { ts in
+            self.timestamps = ts
         }
         self.currentTime = Date.init()
     }

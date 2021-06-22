@@ -12,29 +12,33 @@ struct DashboardView: View {
     @Binding var currentTime: Date
     
     var body: some View {
-        List(timestamps) { item in
-            NavigationLink(destination: Text("Hi")) {
-                HStack() {
-                    Text(item.project)
-                        .bold()
-                        .textCase(.uppercase)
-                    Text("•")
-                    Text(Format().getTime(start: item.startTime, end: currentTime))
-                    Spacer()
-                    
-                    Text(item.active ? "A" : "N")
-                        .foregroundColor(item.active ? Color.blue : Color.gray)
-                        .bold()
-                        .padding(.horizontal, 16.0)
-                        .padding(.vertical, 4)
-                        .background(item.active ? Color.blue.opacity(0.2) : Color.gray.opacity(0.2))
-                        .clipShape(RoundedRectangle(
-                            cornerRadius: 8, style: .continuous
-                        ))
+        if timestamps.count == 0 {
+            Text("Looks like you don't have any timestamps, hit the plus on the top right to make one!")
+                .padding()
+        } else {
+            List(timestamps) { item in
+                NavigationLink(destination: DetailView(ts: item)) {
+                    HStack() {
+                        Text(item.project)
+                            .bold()
+                            .textCase(.uppercase)
+                        Text("•")
+                        Text(Format().getTime(start: item.startTime, end: currentTime))
+                        Spacer()
+                        
+                        Text(item.active ? "A" : "N")
+                            .foregroundColor(item.active ? Color.blue : Color.gray)
+                            .bold()
+                            .padding(.horizontal, 16.0)
+                            .padding(.vertical, 4)
+                            .background(item.active ? Color.blue.opacity(0.2) : Color.gray.opacity(0.2))
+                            .clipShape(RoundedRectangle(
+                                cornerRadius: 8, style: .continuous
+                            ))
+                    }
                 }
             }
         }
-
     }
 }
 

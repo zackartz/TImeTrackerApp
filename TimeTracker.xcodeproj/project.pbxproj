@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1486457A2681985700DB02F7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148645792681985700DB02F7 /* DetailView.swift */; };
+		1486457B2681985700DB02F7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148645792681985700DB02F7 /* DetailView.swift */; };
 		14919741267EF9240072C30B /* TimeTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491972E267EF9220072C30B /* TimeTrackerApp.swift */; };
 		14919742267EF9240072C30B /* TimeTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491972E267EF9220072C30B /* TimeTrackerApp.swift */; };
 		14919743267EF9240072C30B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491972F267EF9220072C30B /* ContentView.swift */; };
@@ -22,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		148645792681985700DB02F7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		1491972E267EF9220072C30B /* TimeTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrackerApp.swift; sourceTree = "<group>"; };
 		1491972F267EF9220072C30B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		14919730267EF9240072C30B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 				1491972E267EF9220072C30B /* TimeTrackerApp.swift */,
 				14919752267EFB820072C30B /* Data.swift */,
 				14CF666E2680350000BA3E87 /* AddModal.swift */,
+				148645792681985700DB02F7 /* DetailView.swift */,
 				14919730267EF9240072C30B /* Assets.xcassets */,
 				14CF666B26802DB000BA3E87 /* DashboardView.swift */,
 			);
@@ -212,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CF666F2680350000BA3E87 /* AddModal.swift in Sources */,
+				1486457A2681985700DB02F7 /* DetailView.swift in Sources */,
 				14919743267EF9240072C30B /* ContentView.swift in Sources */,
 				14CF666C26802DB000BA3E87 /* DashboardView.swift in Sources */,
 				14919753267EFB820072C30B /* Data.swift in Sources */,
@@ -224,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CF66702680350000BA3E87 /* AddModal.swift in Sources */,
+				1486457B2681985700DB02F7 /* DetailView.swift in Sources */,
 				14919744267EF9240072C30B /* ContentView.swift in Sources */,
 				14CF666D26802DB000BA3E87 /* DashboardView.swift in Sources */,
 				14919754267EFB820072C30B /* Data.swift in Sources */,

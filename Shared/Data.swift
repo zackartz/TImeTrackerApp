@@ -96,9 +96,9 @@ extension JSONEncoder {
 }
 
 
-class Api {
+class Api {    
     func getTimestamps(completion: @escaping ([Timestamp]) -> ()) {
-        guard let url = URL(string: "http://localhost:6969/api/v1/timestamps") else { return }
+        guard let url = URL(string: "https://tt.zackmyers.io/api/v1/timestamps") else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
@@ -121,6 +121,46 @@ class Api {
         .resume()
     }
     
+    func stopTimestamp(id: String) {
+        guard let url = URL(string: "https://tt.zackmyers.io/api/v1/end/\(id)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                if (try? JSONDecoder.javaScriptISO8601().decode(Timestamp.self, from: data)) != nil {
+                    return
+                }
+            }
+        }
+        .resume()
+    }
+    
+    func deleteTimestamp(id: String) -> Bool {
+        let url = URL(string: "https://tt.zackmyers.io/api/v1/timestamps/\(id)")
+        guard let requestURL = url else {
+            return false
+        }
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "DELETE"
+                
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+            
+            if data != nil {
+                print("we did it!")
+                return
+            }
+        }
+        task.resume()
+        
+        return false
+    }
+    
     func createTimestampJsonData(project: String, category: String, comment: String) -> Data {
         return try! JSONEncoder.javaScriptISO8601().encode(Timestamp(id: "", endTime: Date.init(), startTime: Date.init(), active: false, comment: comment, category: category, project: project))
     }
@@ -136,8 +176,22 @@ class Format {
         return dateText
     }
     
+    func formatDateShort(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        
+        let dateText = dateFormatter.string(from: date)
+        return dateText
+    }
+    
     func getTime(start: Date, end: Date) -> String {
-        return formatTime(date: start.timeIntervalSinceReferenceDate - end.timeIntervalSinceReferenceDate)
+        let str = formatTime(date: start.timeIntervalSinceReferenceDate - end.timeIntervalSinceReferenceDate)
+        var arr = str.components(separatedBy: " ")
+        
+        arr = arr.dropLast(1)
+        
+        return arr.joined(separator: " ")
     }
     
     func formatTime(date: TimeInterval) -> String {

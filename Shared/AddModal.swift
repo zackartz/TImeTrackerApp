@@ -64,7 +64,7 @@ struct AddModal: View {
     }
     
     func createTimestamp() -> Bool {
-        let url = URL(string: "http://localhost:6969/api/v1/create")
+        let url = URL(string: "https://tt.zackmyers.io/api/v1/create")
         guard let requestURL = url else {
             return false
         }
